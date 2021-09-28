@@ -14,19 +14,19 @@ export const weatherSlice = createSlice({
   initialState,
   reducers: {
     refreshHN: (state, action) => {
-      if (Date.now() - state.timelog > 1000) {
+      if (Date.now() - state.timelog > 12000) {
         state.hn = action.payload;
         console.log("loading... HN ");
       }
     },
     refreshVinh: (state, action) => {
-      if (Date.now() - state.timelog > 1000) {
+      if (Date.now() - state.timelog > 12000) {
         state.vinh = action.payload;
         console.log("loading ... Vinh");
       }
     },
     refreshDN: (state, action) => {
-      if (Date.now() - state.timelog > 1000) {
+      if (Date.now() - state.timelog > 12000) {
         state.dn = action.payload;
         console.log("loading... DN");
         state.timelog = Date.now();
