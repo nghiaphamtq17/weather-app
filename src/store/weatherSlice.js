@@ -4,7 +4,7 @@ import axios from "axios";
 const initialState = {
   hn: [],
   vinh: [],
-  dn: [],
+  hcm: [],
 
   timelog: 0,
 };
@@ -14,21 +14,21 @@ export const weatherSlice = createSlice({
   initialState,
   reducers: {
     refreshHN: (state, action) => {
-      if (Date.now() - state.timelog > 12000) {
+      if (Date.now() - state.timelog > 1000) {
         state.hn = action.payload;
         console.log("loading... HN ");
       }
     },
     refreshVinh: (state, action) => {
-      if (Date.now() - state.timelog > 12000) {
+      if (Date.now() - state.timelog > 1000) {
         state.vinh = action.payload;
         console.log("loading ... Vinh");
       }
     },
-    refreshDN: (state, action) => {
-      if (Date.now() - state.timelog > 12000) {
-        state.dn = action.payload;
-        console.log("loading... DN");
+    refreshHCM: (state, action) => {
+      if (Date.now() - state.timelog > 1000) {
+        state.hcm = action.payload;
+        console.log("loading... HCM");
         state.timelog = Date.now();
       }
     },
@@ -37,23 +37,25 @@ export const weatherSlice = createSlice({
 
 export async function fetchHN(dispatch, getState) {
   const hn = await axios.get(
-    `https://api.openweathermap.org/data/2.5/weather?q=hanoi&appid=a5d0f1415e7127264bfa9db7a73f772f`
+    `https://api.openweathermap.org/data/2.5/forecast?id=1581129&appid=a5d0f1415e7127264bfa9db7a73f772f`
   );
   dispatch({ type: "weather/refreshHN", payload: hn.data });
 }
 
 export async function fetchVinh(dispatch, getState) {
   const vinh = await axios.get(
-    `https://api.openweathermap.org/data/2.5/weather?q=vinh&appid=a5d0f1415e7127264bfa9db7a73f772f`
+    `https://api.openweathermap.org/data/2.5/forecast?id=1562693&appid=a5d0f1415e7127264bfa9db7a73f772f
+    
+    `
   );
   dispatch({ type: "weather/refreshVinh", payload: vinh.data });
 }
 
-export async function fetchDN(dispatch, getState) {
-  const dn = await axios.get(
-    `https://api.openweathermap.org/data/2.5/weather?q=danang&appid=a5d0f1415e7127264bfa9db7a73f772f`
+export async function fetchHCM(dispatch, getState) {
+  const hcm = await axios.get(
+    `https://api.openweathermap.org/data/2.5/forecast?id=1580578&appid=a5d0f1415e7127264bfa9db7a73f772f`
   );
-  dispatch({ type: "weather/refreshDN", payload: dn.data });
+  dispatch({ type: "weather/refreshHCM", payload: hcm.data });
 }
 
 export const { refresh } = weatherSlice.actions;

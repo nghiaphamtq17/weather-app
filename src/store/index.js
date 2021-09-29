@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import weatherReducer from './weatherSlice'
-import { persistStore, persistReducer } from 'redux-persist';
+import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 
